@@ -8,6 +8,9 @@ New-Item -Path "$path" -ItemType Directory
 
 Start-Transcript -Path c:\Script\RDPWEB\install.log
 
+Write-Host "Download install.ps1" -ForegroundColor Green
+Invoke-WebRequest -Uri "https://raw.githubusercontent.com/LanGuerreiro/installRDWEB/main/install.ps1" -OutFile "$path\install.ps1"
+
 Write-Host "Download Config01.ps1" -ForegroundColor Green
 Invoke-WebRequest -Uri "https://raw.githubusercontent.com/LanGuerreiro/installRDWEB/main/config01.ps1" -OutFile "$path\config01.ps1"
 
