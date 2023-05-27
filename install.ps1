@@ -13,8 +13,8 @@ Start-Transcript -Path c:\Script\RDPWEB\install-$date.log
 Write-Host "Download install.ps1" -ForegroundColor Green
 Invoke-WebRequest -Uri "https://raw.githubusercontent.com/LanGuerreiro/installRDWEB/main/install.ps1" -OutFile "$path\install.ps1"
 
-Write-Host "Download reboot" -ForegroundColor Green
-Invoke-WebRequest -Uri "https://raw.githubusercontent.com/LanGuerreiro/installRDWEB/main/config01.ps1" -OutFile "$path\reboot01.ps1"
+Write-Host "Download reboot01.ps1" -ForegroundColor Green
+Invoke-WebRequest -Uri "https://raw.githubusercontent.com/LanGuerreiro/installRDWEB/main/reboot01.ps1" -OutFile "$path\reboot01.ps1"
 
 Write-Host "Download Config01.ps1" -ForegroundColor Green
 Invoke-WebRequest -Uri "https://raw.githubusercontent.com/LanGuerreiro/installRDWEB/main/config01.ps1" -OutFile "$path\config01.ps1"
@@ -46,9 +46,9 @@ Write-Host "Tasktaskschedule to continue confg01" -ForegroundColor Green
 $AtStartup = New-ScheduledTaskTrigger -AtStartup -RandomDelay 00:01:00
 $Settings = New-ScheduledTaskSettingsSet
 $Principal = New-ScheduledTaskPrincipal -UserID "NT AUTHORITY\SYSTEM" -LogonType ServiceAccount -RunLevel Highest
-$Action = New-ScheduledTaskAction -Execute 'powershell.exe' -Argument '-NonInteractive -NoLogo -NoProfile -ExecutionPolicy Bypass -File "c:\Script\RDPWEB\config01.ps1"'
+$Action = New-ScheduledTaskAction -Execute 'powershell.exe' -Argument '-NonInteractive -NoLogo -NoProfile -ExecutionPolicy Bypass -File "c:\Script\RDPWEB\reboot01.ps1"'
 $Task = New-ScheduledTask -Trigger $AtStartup -Settings $Settings -Action $Action -Principal $Principal
-Register-ScheduledTask -TaskName "RDPWEB-CONF01" -InputObject $Task
+Register-ScheduledTask -TaskName "RDPWEB-reboot01" -InputObject $Task
 
 Write-Host "Rebooting" -ForegroundColor Green
 shutdown -r -t 0 -f
