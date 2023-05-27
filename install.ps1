@@ -30,6 +30,19 @@ $path = 'c:\Script\RDPWEB'
 New-Item -Path "$path" -ItemType Directory
 Invoke-WebRequest -Uri "https://raw.githubusercontent.com/LanGuerreiro/installRDWEB/main/config01.ps1" -OutFile "$path\config01.ps1"
 
+Write-Host "Taskmgmt to continue confg01" -ForegroundColor Green
+
+$AtStartup = New-ScheduledTaskTrigger -AtStartup -RandomDelay 00:01:00
+$Settings = New-ScheduledTaskSettingsSet
+$Principal = New-ScheduledTaskPrincipal -UserID "NT AUTHORITY\SYSTEM" -LogonType ServiceAccount -RunLevel Highest
+$Action = New-ScheduledTaskAction -Execute 'powershell.exe' -Argument '-NonInteractive -NoLogo -NoProfile -ExecutionPolicy Bypass -File "c:\Script\RDPWEB\config01.ps1"'
+$Task = New-ScheduledTask -Trigger $AtStartup -Settings $Settings -Action $Action -Principal $Principal
+Register-ScheduledTask -TaskName "RDPWEB-CONF01" -InputObject $Task
+
+
+shutdown -r -t 10
+exit 0
+
 #$WebClient = New-Object System.Net.WebClient
 #$WebClient.DownloadFile("https://raw.githubusercontent.com/LanGuerreiro/installRDWEB/main/config01.ps1","c:\Script\RDPWEB")
 
@@ -38,7 +51,3 @@ Invoke-WebRequest -Uri "https://raw.githubusercontent.com/LanGuerreiro/installRD
 
 #Write-Host "FQDN: $myFQDN" -ForegroundColor Green
 #New-RDSessionDeployment -ConnectionBroker  "$myFQDN" -WebAccessServer "$myFQDN" -SessionHost "$myFQDN"
-
-
-shutdown -r -t 10
-exit 0
