@@ -2,6 +2,15 @@ Write-Host "Set policy" -ForegroundColor Green
 
 Set-ExecutionPolicy -ExecutionPolicy Unrestricted
 
+Write-Host "Creating folder c:\Script\RDPWEB" -ForegroundColor Green
+$path = 'c:\Script\RDPWEB'
+New-Item -Path "$path" -ItemType Directory
+
+Start-Transcript -Path c:\Script\RDPWEB\install.log
+
+Write-Host "Download Config01.ps1" -ForegroundColor Green
+Invoke-WebRequest -Uri "https://raw.githubusercontent.com/LanGuerreiro/installRDWEB/main/config01.ps1" -OutFile "$path\config01.ps1"
+
 Write-Host "Set firewall Role" -ForegroundColor Green
 netsh advfirewall firewall add rule name='ICMP Allow incoming V4 echo request' protocol=icmpv4:8,any dir=in action=allow
 #netsh advfirewall firewall add rule name='ICMP Allow incoming V6 echo request' protocol=icmpv6:8,any dir=in action=allow
@@ -24,12 +33,6 @@ Install-WindowsFeature RDS-Web-Access
 Write-Host "Install RSAT-RDS-Tools" -ForegroundColor Green
 Install-WindowsFeature RSAT-RDS-Tools
 
-Write-Host "Creating folder and download next step" -ForegroundColor Green
-$path = 'c:\Script\RDPWEB'
-
-New-Item -Path "$path" -ItemType Directory
-Invoke-WebRequest -Uri "https://raw.githubusercontent.com/LanGuerreiro/installRDWEB/main/config01.ps1" -OutFile "$path\config01.ps1"
-
 Write-Host "Tasktaskschedule to continue confg01" -ForegroundColor Green
 
 $AtStartup = New-ScheduledTaskTrigger -AtStartup -RandomDelay 00:01:00
@@ -41,6 +44,7 @@ Register-ScheduledTask -TaskName "RDPWEB-CONF01" -InputObject $Task
 
 
 shutdown -r -t 10
+Stop-Transcript
 exit 0
 
 #$WebClient = New-Object System.Net.WebClient
