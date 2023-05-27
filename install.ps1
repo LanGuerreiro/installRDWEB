@@ -47,8 +47,8 @@ $Action = New-ScheduledTaskAction -Execute 'powershell.exe' -Argument '-NonInter
 $Task = New-ScheduledTask -Trigger $AtStartup -Settings $Settings -Action $Action -Principal $Principal
 Register-ScheduledTask -TaskName "RDPWEB-CONF01" -InputObject $Task
 
-
-#shutdown -r -t 10
+Write-Host "Rebooting" -ForegroundColor Green
+#shutdown -r -t 0 -f
 Stop-Transcript
 exit 0
 
