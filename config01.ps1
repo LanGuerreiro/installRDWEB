@@ -24,7 +24,7 @@ Invoke-Command -ComputerName $myFQDN -ScriptBlock {
      }catch{ 
      		Write-Host "without pending boot"
  		Write-Host "Remove taskschedule conf01" -ForegroundColor Green 
- 		Unregister-ScheduledTask -TaskName RDPWEB-CONF01 -Confirm:$false
+ 		#Unregister-ScheduledTask -TaskName RDPWEB-CONF01 -Confirm:$false
  }
 }
 
