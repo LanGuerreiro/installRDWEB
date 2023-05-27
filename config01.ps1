@@ -24,8 +24,6 @@ Invoke-Command -ComputerName $myFQDN -ScriptBlock {
      }catch{ 
  Write-Host "whitout pending boot" 
  Unregister-ScheduledTask -TaskName RDPWEB-CONF01 -Confirm:$false
- }
-}
 
 Write-Host "Remove taskschedule conf01" -ForegroundColor Green
 #Unregister-ScheduledTask -TaskName RDPWEB-CONF01 -Confirm:$false
@@ -33,6 +31,8 @@ Write-Host "Remove taskschedule conf01" -ForegroundColor Green
 Write-Host "FQDN: $myFQDN" -ForegroundColor Green
 New-RDSessionDeployment -ConnectionBroker  "$myFQDN" -WebAccessServer "$myFQDN" -SessionHost "$myFQDN"
 
+ }
+}
 
 Stop-Transcript
 exit 0
