@@ -16,7 +16,7 @@ Invoke-Command -ComputerName $myFQDN -ScriptBlock {
        if(($status -ne $null) -and $status.RebootPending){
 
 	Write-Host "Reboot now"        
-        shutdown -r -t 10 -f
+        shutdown -r -t 0 -f
  	return $true
 		 
 		 
