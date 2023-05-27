@@ -41,7 +41,7 @@ Install-WindowsFeature RDS-Web-Access
 Write-Host "Install RSAT-RDS-Tools" -ForegroundColor Green
 Install-WindowsFeature RSAT-RDS-Tools
 
-Write-Host "Tasktaskschedule to continue confg01" -ForegroundColor Green
+Write-Host "Tasktaskschedule to continue reboot01" -ForegroundColor Green
 
 $AtStartup = New-ScheduledTaskTrigger -AtStartup -RandomDelay 00:01:00
 $Settings = New-ScheduledTaskSettingsSet
