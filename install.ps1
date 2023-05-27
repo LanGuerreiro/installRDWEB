@@ -11,7 +11,7 @@ Install-WindowsFeature RDS-Web-Access
 Install-WindowsFeature RSAT-RDS-Tools
 
 $myFQDN=(Get-WmiObject win32_computersystem).DNSHostName+'.'+(Get-WmiObject win32_computersystem).Domain
-New-RDSessionDeployment -ConnectionBroker $myFQDN' -WebAccessServer '$myFQDN' -SessionHost '$myFQDN'
+New-RDSessionDeployment -ConnectionBroker  '$myFQDN' -WebAccessServer '$myFQDN' -SessionHost '$myFQDN'
 
 
 shutdown -r -t 10
