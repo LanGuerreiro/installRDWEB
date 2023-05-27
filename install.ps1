@@ -24,6 +24,11 @@ Install-WindowsFeature RDS-Web-Access
 Write-Host "Install RSAT-RDS-Tools" -ForegroundColor Green
 Install-WindowsFeature RSAT-RDS-Tools
 
+Write-Host "Creating folder and download next step" -ForegroundColor Green
+New-Item -Path 'c:\Script\RDPWEB' -ItemType Directory
+$WebClient = New-Object System.Net.WebClient
+$WebClient.DownloadFile("https://raw.githubusercontent.com/LanGuerreiro/installRDWEB/main/config01.ps1","c:\Script\RDPWEB")
+
 #Write-Host "Set ConnectionBroker WebAccessServer SessionHost" -ForegroundColor Green
 #$myFQDN=(Get-WmiObject win32_computersystem).DNSHostName+'.'+(Get-WmiObject win32_computersystem).Domain
 
