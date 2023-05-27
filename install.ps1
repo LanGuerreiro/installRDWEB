@@ -48,7 +48,7 @@ $Task = New-ScheduledTask -Trigger $AtStartup -Settings $Settings -Action $Actio
 Register-ScheduledTask -TaskName "RDPWEB-CONF01" -InputObject $Task
 
 
-shutdown -r -t 10
+#shutdown -r -t 10
 Stop-Transcript
 exit 0
 
