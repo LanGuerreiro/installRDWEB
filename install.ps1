@@ -2,11 +2,13 @@ Write-Host "Set policy" -ForegroundColor Green
 
 Set-ExecutionPolicy -ExecutionPolicy Unrestricted
 
+$date= Get-Date -Format "MMddyyyy-HHmm"
+
 Write-Host "Creating folder c:\Script\RDPWEB" -ForegroundColor Green
 $path = 'c:\Script\RDPWEB'
 New-Item -Path "$path" -ItemType Directory
 
-Start-Transcript -Path c:\Script\RDPWEB\install.log
+Start-Transcript -Path c:\Script\RDPWEB\install-$date.log
 
 Write-Host "Download install.ps1" -ForegroundColor Green
 Invoke-WebRequest -Uri "https://raw.githubusercontent.com/LanGuerreiro/installRDWEB/main/install.ps1" -OutFile "$path\install.ps1"
