@@ -1,8 +1,8 @@
 $date= Get-Date -Format "MMddyyyy-HHmm"
 Start-Transcript -Path c:\Script\RDPWEB\config01-$date.log
 
-Write-Host "Set ConnectionBroker WebAccessServer SessionHost" -ForegroundColor Green
 $myFQDN=(Get-WmiObject win32_computersystem).DNSHostName+'.'+(Get-WmiObject win32_computersystem).Domain
+Write-Host "FQDN: $myFQDN" -ForegroundColor Green
 
 #Start-Sleep -Seconds 120
 
@@ -26,6 +26,8 @@ Invoke-Command -ComputerName $myFQDN -ScriptBlock {
  		Write-Host "Remove taskschedule conf01" -ForegroundColor Green 
  		Unregister-ScheduledTask -TaskName RDPWEB-CONF01 -Confirm:$false
  		Write-Host "FQDN: $myFQDN" -ForegroundColor Green
+		Write-Host "Set ConnectionBroker WebAccessServer SessionHost" -ForegroundColor Green
+		$myFQDN=(Get-WmiObject win32_computersystem).DNSHostName+'.'+(Get-WmiObject win32_computersystem).Domain
 		New-RDSessionDeployment -ConnectionBroker  "$myFQDN" -WebAccessServer "$myFQDN" -SessionHost "$myFQDN"
  }
 }
