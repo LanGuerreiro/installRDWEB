@@ -29,11 +29,11 @@ $myFQDN=(Get-WmiObject win32_computersystem).DNSHostName+'.'+(Get-WmiObject win3
 Write-Host "FQDN: $myFQDN" -ForegroundColor Green
 New-RDSessionDeployment -ConnectionBroker  "$myFQDN" -WebAccessServer "$myFQDN" -SessionHost "$myFQDN"
 
-
+return $false
 Stop-Transcript
 exit 0
 
-     return $false
+    
 
 }
  }
