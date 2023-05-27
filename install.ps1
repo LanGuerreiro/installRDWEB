@@ -30,7 +30,7 @@ $path = 'c:\Script\RDPWEB'
 New-Item -Path "$path" -ItemType Directory
 Invoke-WebRequest -Uri "https://raw.githubusercontent.com/LanGuerreiro/installRDWEB/main/config01.ps1" -OutFile "$path\config01.ps1"
 
-Write-Host "Taskmgmt to continue confg01" -ForegroundColor Green
+Write-Host "Tasktaskschedule to continue confg01" -ForegroundColor Green
 
 $AtStartup = New-ScheduledTaskTrigger -AtStartup -RandomDelay 00:01:00
 $Settings = New-ScheduledTaskSettingsSet
