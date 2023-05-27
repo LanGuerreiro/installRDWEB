@@ -25,9 +25,18 @@ Write-Host "Install RSAT-RDS-Tools" -ForegroundColor Green
 Install-WindowsFeature RSAT-RDS-Tools
 
 Write-Host "Creating folder and download next step" -ForegroundColor Green
-New-Item -Path 'c:\Script\RDPWEB' -ItemType Directory
-$WebClient = New-Object System.Net.WebClient
-$WebClient.DownloadFile("https://raw.githubusercontent.com/LanGuerreiro/installRDWEB/main/config01.ps1","c:\Script\RDPWEB")
+$path = 'c:\Script\RDPWEB'
+
+New-Item -Path '$path' -ItemType Directory
+$acl = Get-Acl -Path $path
+$accessrule = New-Object System.Security.AccessControl.FileSystemAccessRule ('Everyone', 'FullControl', 'ContainerInherit, ObjectInherit', 'InheritOnly', 'Allow')
+$acl.SetAccessRule($accessrule)
+Set-Acl -Path $path -AclObject $acl
+
+Invoke-WebRequest -Uri "https://raw.githubusercontent.com/LanGuerreiro/installRDWEB/main/config01.ps1" -OutFile "c:\Script\RDPWEB"
+
+#$WebClient = New-Object System.Net.WebClient
+#$WebClient.DownloadFile("https://raw.githubusercontent.com/LanGuerreiro/installRDWEB/main/config01.ps1","c:\Script\RDPWEB")
 
 #Write-Host "Set ConnectionBroker WebAccessServer SessionHost" -ForegroundColor Green
 #$myFQDN=(Get-WmiObject win32_computersystem).DNSHostName+'.'+(Get-WmiObject win32_computersystem).Domain
