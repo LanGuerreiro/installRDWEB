@@ -13,6 +13,9 @@ Start-Transcript -Path c:\Script\RDPWEB\install-$date.log
 Write-Host "Download install.ps1" -ForegroundColor Green
 Invoke-WebRequest -Uri "https://raw.githubusercontent.com/LanGuerreiro/installRDWEB/main/install.ps1" -OutFile "$path\install.ps1"
 
+Write-Host "Download reboot" -ForegroundColor Green
+Invoke-WebRequest -Uri "https://raw.githubusercontent.com/LanGuerreiro/installRDWEB/main/config01.ps1" -OutFile "$path\reboot01.ps1"
+
 Write-Host "Download Config01.ps1" -ForegroundColor Green
 Invoke-WebRequest -Uri "https://raw.githubusercontent.com/LanGuerreiro/installRDWEB/main/config01.ps1" -OutFile "$path\config01.ps1"
 
@@ -48,7 +51,7 @@ $Task = New-ScheduledTask -Trigger $AtStartup -Settings $Settings -Action $Actio
 Register-ScheduledTask -TaskName "RDPWEB-CONF01" -InputObject $Task
 
 Write-Host "Rebooting" -ForegroundColor Green
-#shutdown -r -t 0 -f
+shutdown -r -t 0 -f
 Stop-Transcript
 exit 0
 
