@@ -1,8 +1,8 @@
 $date= Get-Date -Format "MMddyyyy-HHmm"
 
-Start-Transcript -Path c:\Script\RDPWEB\reboot -$date.log
+Start-Transcript -Path c:\Script\RDPWEB\reboot-$date.log
 
-Write-Host "Tasktaskschedule to continue config01" -ForegroundColor Green
+Write-Host "taskschedule to continue config01" -ForegroundColor Green
 
 $AtStartup = New-ScheduledTaskTrigger -AtStartup -RandomDelay 00:01:00
 $Settings = New-ScheduledTaskSettingsSet
@@ -11,10 +11,10 @@ $Action = New-ScheduledTaskAction -Execute 'powershell.exe' -Argument '-NonInter
 $Task = New-ScheduledTask -Trigger $AtStartup -Settings $Settings -Action $Action -Principal $Principal
 Register-ScheduledTask -TaskName "RDPWEB-config01" -InputObject $Task
 
-Write-Host "Remove taskschedule conf01" -ForegroundColor Green 
- Unregister-ScheduledTask -TaskName RDPWEB-CONF01 -Confirm:$false
+Write-Host "Remove taskschedule RDPWEB-reboot01" -ForegroundColor Green 
+ Unregister-ScheduledTask -TaskName RDPWEB-reboot01 -Confirm:$false
 
 Write-Host "Rebooting" -ForegroundColor Green
-shutdown -r -t 10 -f
+shutdown -r -t 20 -f
 Stop-Transcript
 exit 0
