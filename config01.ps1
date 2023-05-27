@@ -1,6 +1,8 @@
 $date= Get-Date -Format "MMddyyyy-HHmm"
 Start-Transcript -Path c:\Script\RDPWEB\config01-$date.log
 
+Start-Sleep -Seconds 120
+
 $servername = 'localhost'
 
 Invoke-Command -ComputerName $servername -ScriptBlock { 
