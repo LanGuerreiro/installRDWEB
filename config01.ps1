@@ -7,6 +7,9 @@ Write-Host "FQDN: $myFQDN" -ForegroundColor Green
 Write-Host "Waiting for services runnig Sleep 120s" -ForegroundColor Green
 Start-Sleep -Seconds 120
 
+Write-Host "ADD RDGATEWAY" -ForegroundColor Green
+Add-RDServer -Server "$myFQDN" -Role "RDS-GATEWAY" -ConnectionBroker "$myFQDN" -GatewayExternalFqdn "$myFQDN"
+
 Write-Host "Set ConnectionBroker WebAccessServer SessionHost" -ForegroundColor Green
 New-RDSessionDeployment -ConnectionBroker  "$myFQDN" -WebAccessServer "$myFQDN" -SessionHost "$myFQDN"
 
