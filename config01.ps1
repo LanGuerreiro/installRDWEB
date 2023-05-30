@@ -32,9 +32,9 @@ Set-RDCertificate -Role RDPublishing -Password $pwd -ConnectionBroker "$myFQDN" 
 
 Write-Host "Deploy RDP WEB" -ForegroundColor Green
 
-Install-Module -Name RDWebClientManagement -Confirm:$false
-Install-RDWebClientPackage -Confirm:$false
-Publish-RDWebClientPackage -Type Production -Latest 
+Install-Module -Name RDWebClientManagement -Confirm:$false -force
+Install-RDWebClientPackage -Confirm:$false -force -AcceptLicense
+Publish-RDWebClientPackage -Type Production -Latest
 
 
 Write-Host "Remove taskschedule conf01" -ForegroundColor Green 
