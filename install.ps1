@@ -42,8 +42,8 @@ Install-WindowsFeature RDS-Web-Access
 Write-Host "Install RSAT-RDS-Tools" -ForegroundColor Green
 Install-WindowsFeature RSAT-RDS-Tools
 
-#Write-Host "Install PowerShellGet" -ForegroundColor Green
-#Install-Module -Name PowerShellGet -Force -Confirm:$false
+Write-Host "Install PowerShellGet" -ForegroundColor Green
+Install-PackageProvider -Name NuGet -MinimumVersion 2.8.5.201 -Force -Confirm:$false
 
 Write-Host "Tasktaskschedule to continue reboot01" -ForegroundColor Green
 
