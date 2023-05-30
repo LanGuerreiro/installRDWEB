@@ -4,6 +4,7 @@ Start-Transcript -Path c:\Script\RDPWEB\config01-$date.log
 $myFQDN=(Get-WmiObject win32_computersystem).DNSHostName+'.'+(Get-WmiObject win32_computersystem).Domain
 Write-Host "FQDN: $myFQDN" -ForegroundColor Green
 
+Write-Host "Waiting for services runnig Sleep 120s" -ForegroundColor Green
 Start-Sleep -Seconds 120
 
 Write-Host "Set ConnectionBroker WebAccessServer SessionHost" -ForegroundColor Green
