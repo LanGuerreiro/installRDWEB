@@ -35,7 +35,7 @@ Set-RDCertificate -Role RDPublishing -Password $pwd -ConnectionBroker "$myFQDN" 
 
 Write-Host "Deploy RDP WEB" -ForegroundColor Green
 Write-Host "Install RDWebClientManagement" -ForegroundColor Green
-Install-Module -Name RDWebClientManagement -Confirm:$false -force
+Install-Module -Name RDWebClientManagement -AcceptLicense -Confirm:$false -force
 
 Write-Host "Install RDWebClientPackage" -ForegroundColor Green
 Install-RDWebClientPackage -Confirm:$false -force -AcceptLicense
