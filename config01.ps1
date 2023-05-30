@@ -7,9 +7,6 @@ Write-Host "FQDN: $myFQDN" -ForegroundColor Green
 Write-Host "Waiting for services runnig Sleep 120s" -ForegroundColor Green
 Start-Sleep -Seconds 120
 
-Write-Host "ADD RDGATEWAY" -ForegroundColor Green
-Add-RDServer -Server "$myFQDN" -Role "RDS-GATEWAY" -ConnectionBroker "$myFQDN" -GatewayExternalFqdn "$myFQDN"
-
 Write-Host "Set ConnectionBroker WebAccessServer SessionHost" -ForegroundColor Green
 New-RDSessionDeployment -ConnectionBroker  "$myFQDN" -WebAccessServer "$myFQDN" -SessionHost "$myFQDN"
 
@@ -23,6 +20,9 @@ Write-Host "Publish APP" -ForegroundColor Green
 New-RDRemoteApp -CollectionName "JUMP_CLIENT_01" -DisplayName "Notepad" -FilePath "C:\Windows\System32\Notepad.exe"
 New-RDRemoteApp -CollectionName "JUMP_CLIENT_01" -DisplayName "Microsoft Edge" -FilePath "C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe"
 New-RDRemoteApp -CollectionName "JUMP_CLIENT_01" -DisplayName "RDP CLIENT" -FilePath "C:\Windows\system32\mstsc.exe"
+
+Write-Host "ADD RDGATEWAY" -ForegroundColor Green
+Add-RDServer -Server "$myFQDN" -Role "RDS-GATEWAY" -ConnectionBroker "$myFQDN" -GatewayExternalFqdn "$myFQDN"
 
 Write-Host "Creating SSL Certificate Self Signed" -ForegroundColor Green
 $Path = "C:\Script\RDPWEB\SSL\SSL.pfx"   
