@@ -11,7 +11,7 @@ Write-Host "Set ConnectionBroker WebAccessServer SessionHost" -ForegroundColor G
 New-RDSessionDeployment -ConnectionBroker  "$myFQDN" -WebAccessServer "$myFQDN" -SessionHost "$myFQDN"
 
 Write-Host "Set GatewayConfiguration" -ForegroundColor Green
-set-RDDeploymentGatewayConfiguration -gatewaymode custom -GatewayExternalFQDN "$myFQDN" -LogonMethod AllowUserToSelectDuringConnection -UseCachedCredentials $True -BypassLocal $True -ConnectionBroker "$myFQDN"
+set-RDDeploymentGatewayConfiguration -gatewaymode custom -GatewayExternalFQDN "$myFQDN" -LogonMethod AllowUserToSelectDuringConnection -UseCachedCredentials $True -BypassLocal $True -ConnectionBroker "$myFQDN" -force
 
 Write-Host "Creating ColletcionName JUMP_CLIENT_01" -ForegroundColor Green
 New-RDSessionCollection -CollectionName "JUMP_CLIENT_01" -SessionHost "$myFQDN" -CollectionDescription "Session Collector to jump customer" -ConnectionBroker "$myFQDN"
