@@ -22,7 +22,7 @@ Write-Host "Creating SSL Certificate Self Signed" -ForegroundColor Green
 $Path = "C:\Script\RDPWEB\SSL\SSL.pfx"   
 $cert = New-SelfSignedCertificate -DnsName RDPWEB-CONT-1.sk.int -CertStoreLocation cert:\LocalMachine\My
 $pwd = ConvertTo-SecureString -String "123" -Force -AsPlainText
-Export-PfxCertificate -Cert $cert -FilePath C:\Script\RDPWEB\SSL\SSLT.pfx -Password $pwd
+Export-PfxCertificate -Cert $cert -FilePath C:\Script\RDPWEB\SSL\SSL.pfx -Password $pwd
 
 Write-Host "Set SSL" -ForegroundColor Green
 Set-RDCertificate -Role RDRedirector -Password $pwd -ConnectionBroker "$myFQDN" -ImportPath $Path
