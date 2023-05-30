@@ -38,7 +38,7 @@ Write-Host "Install RDWebClientManagement" -ForegroundColor Green
 Install-Module -Name RDWebClientManagement -AcceptLicense -Confirm:$false -force
 
 Write-Host "Install RDWebClientPackage" -ForegroundColor Green
-Install-RDWebClientPackage -Confirm:$false -force -AcceptLicense
+Install-RDWebClientPackage -Confirm:$false
 
 Write-Host "Import RDWebClientBrokerCert" -ForegroundColor Green
 Import-RDWebClientBrokerCert "C:\Script\RDPWEB\SSL\SSL.pfx"
