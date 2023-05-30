@@ -26,6 +26,7 @@ $Path = "C:\Script\RDPWEB\SSL\SSL.pfx"
 $cert = New-SelfSignedCertificate -DnsName RDPWEB-CONT-1.sk.int -CertStoreLocation cert:\LocalMachine\My
 $pwd = ConvertTo-SecureString -String "123" -Force -AsPlainText
 Export-PfxCertificate -Cert $cert -FilePath C:\Script\RDPWEB\SSL\SSL.pfx -Password $pwd
+Export-Certificate -Cert $cert -FilePath "C:\Script\RDPWEB\SSL\SSL.cer"
 
 Write-Host "Set SSL" -ForegroundColor Green
 Set-RDCertificate -Role RDRedirector -Password $pwd -ConnectionBroker "$myFQDN" -ImportPath $Path -force 
@@ -41,7 +42,7 @@ Write-Host "Install RDWebClientPackage" -ForegroundColor Green
 Install-RDWebClientPackage -Confirm:$false
 
 Write-Host "Import RDWebClientBrokerCert" -ForegroundColor Green
-Import-RDWebClientBrokerCert "C:\Script\RDPWEB\SSL\SSL.pfx"
+Import-RDWebClientBrokerCert "C:\Script\RDPWEB\SSL\SSL.cer"
 
 Write-Host "Publish-RDWebClientPackage" -ForegroundColor Green
 Publish-RDWebClientPackage -Type Production -Latest
