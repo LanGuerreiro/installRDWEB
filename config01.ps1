@@ -31,9 +31,16 @@ Set-RDCertificate -Role RDWebAccess -Password $pwd -ConnectionBroker "$myFQDN" -
 Set-RDCertificate -Role RDPublishing -Password $pwd -ConnectionBroker "$myFQDN" -ImportPath $Path
 
 Write-Host "Deploy RDP WEB" -ForegroundColor Green
-
+Write-Host "Install RDWebClientManagement" -ForegroundColor Green
 Install-Module -Name RDWebClientManagement -Confirm:$false -force
+
+Write-Host "Install RDWebClientPackage" -ForegroundColor Green
 Install-RDWebClientPackage -Confirm:$false -force -AcceptLicense
+
+Write-Host "Import RDWebClientBrokerCert" -ForegroundColor Green
+Import-RDWebClientBrokerCert "C:\Script\RDPWEB\SSL\SSL.pfx"
+
+Write-Host "Publish-RDWebClientPackage" -ForegroundColor Green
 Publish-RDWebClientPackage -Type Production -Latest
 
 
