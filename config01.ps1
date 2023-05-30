@@ -19,7 +19,7 @@ New-RDSessionCollection -CollectionName "JUMP_CLIENT_01" -SessionHost "$myFQDN" 
 Write-Host "Publish APP" -ForegroundColor Green
 New-RDRemoteApp -CollectionName "JUMP_CLIENT_01" -DisplayName "Notepad" -FilePath "C:\Windows\System32\Notepad.exe"
 New-RDRemoteApp -CollectionName "JUMP_CLIENT_01" -DisplayName "Microsoft Edge" -FilePath "C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe"
-New-RDRemoteApp -CollectionName "JUMP_CLIENT_01" -DisplayName "RDP CLIENT" -FilePath "%windir%\system32\mstsc.exe"
+New-RDRemoteApp -CollectionName "JUMP_CLIENT_01" -DisplayName "RDP CLIENT" -FilePath "C:\Windows\system32\mstsc.exe"
 
 Write-Host "Creating SSL Certificate Self Signed" -ForegroundColor Green
 $Path = "C:\Script\RDPWEB\SSL\SSL.pfx"   
