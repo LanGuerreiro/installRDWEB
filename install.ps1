@@ -7,6 +7,7 @@ $date= Get-Date -Format "MMddyyyy-HHmm"
 Write-Host "Creating folder c:\Script\RDPWEB" -ForegroundColor Green
 $path = 'c:\Script\RDPWEB'
 New-Item -Path "$path" -ItemType Directory
+New-Item -Path "$path\SSL" -ItemType Directory
 
 Start-Transcript -Path c:\Script\RDPWEB\install-$date.log
 
