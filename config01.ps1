@@ -24,10 +24,10 @@ $pwd = ConvertTo-SecureString -String "123" -Force -AsPlainText
 Export-PfxCertificate -Cert $cert -FilePath C:\Script\RDPWEB\SSL\SSLT.pfx -Password $pwd
 
 Write-Host "Set SSL" -ForegroundColor Green
-Set-RDCertificate -Role RDRedirector -Password $pwd -ConnectionBroker "RDPWEB-CONT-1.sk.int" -ImportPath $Path
-Set-RDCertificate -Role RDGateway -Password $pwd -ConnectionBroker "RDPWEB-CONT-1.sk.int" -ImportPath $Path
-Set-RDCertificate -Role RDWebAccess -Password $pwd -ConnectionBroker "RDPWEB-CONT-1.sk.int" -ImportPath $Path
-Set-RDCertificate -Role RDPublishing -Password $pwd -ConnectionBroker "RDPWEB-CONT-1.sk.int" -ImportPath $Path
+Set-RDCertificate -Role RDRedirector -Password $pwd -ConnectionBroker "$myFQDN" -ImportPath $Path
+Set-RDCertificate -Role RDGateway -Password $pwd -ConnectionBroker "$myFQDN" -ImportPath $Path
+Set-RDCertificate -Role RDWebAccess -Password $pwd -ConnectionBroker "$myFQDN" -ImportPath $Path
+Set-RDCertificate -Role RDPublishing -Password $pwd -ConnectionBroker "$myFQDN" -ImportPath $Path
 
 Write-Host "Deploy RDP WEB" -ForegroundColor Green
 
